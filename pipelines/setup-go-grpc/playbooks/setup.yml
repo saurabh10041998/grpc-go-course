@@ -66,7 +66,7 @@
     # ── Verification ─────────────────────────────────────────────────────────
 
     - name: Verify Go installation
-      ansible.builtin.command: "{{ go_install_dir }}/go/bin/go version"
+      ansible.builtin.command: go version
       register: go_verify
       changed_when: false
 
@@ -82,3 +82,13 @@
     - name: Print protoc version
       ansible.builtin.debug:
         msg: "{{ protoc_verify.stdout }}"
+
+    # ── gRPC Go plugins ──────────────────────────────────────────────────────
+
+    - name: Install protoc-gen-go
+      ansible.builtin.command: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+      changed_when: true
+
+    - name: Install protoc-gen-go-grpc
+      ansible.builtin.command: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+      changed_when: true
