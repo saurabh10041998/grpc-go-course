@@ -51,6 +51,12 @@
         create: true
         mode: "0644"
 
+    - name: Re-source .bashrc
+      ansible.builtin.shell: source {{ bashrc_path }}
+      args:
+        executable: /bin/bash
+      changed_when: false
+
     # ── protobuf-compiler installation ───────────────────────────────────────
 
     - name: Update apt cache
