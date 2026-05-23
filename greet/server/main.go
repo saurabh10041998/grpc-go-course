@@ -24,7 +24,7 @@ func main() {
 
 	s := grpc.NewServer()
 
-	pb.registerGreetServiceServer(s, &Server{})
+	pb.RegisterGreetServiceServer(s, &Server{})
 
 	if err = s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve: %s\n", err)
