@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('install-go-and-protobuf') {
+            steps {
+                sh 'ansible-playbook ${WORKSPACE}/pipelines/setup-go-grpc/playbooks/setup.yml'
+            }
+        }
+    }
+}

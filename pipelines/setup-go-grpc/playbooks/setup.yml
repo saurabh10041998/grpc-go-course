@@ -1,0 +1,84 @@
+---
+- name: Setup Go and protobuf-compiler
+  hosts: localhost
+  connection: local
+  become: true
+
+  vars:
+    go_install_dir: /usr/local
+    go_tarball_dest: /tmp/go_latest.tar.gz
+    bashrc_path: "{{ ansible_env.HOME }}/.bashrc"
+
+  tasks:
+
+    # ── Go installation ──────────────────────────────────────────────────────
+
+    - name: Fetch latest Go version string
+      ansible.builtin.uri:
+        url: https://go.dev/VERSION?m=text
+        return_content: true
+      register: go_version_response
+
+    - name: Set go_version fact  # e.g. "go1.22.4"
+      ansible.builtin.set_fact:
+        go_version: "{{ go_version_response.content.split()[0] }}"
+
+    - name: Download latest Go tarball
+      ansible.builtin.get_url:
+        url: "https://dl.google.com/go/{{ go_version }}.linux-amd64.tar.gz"
+        dest: "{{ go_tarball_dest }}"
+        mode: "0644"
+
+    - name: Remove previous Go installation
+      ansible.builtin.file:
+        path: "{{ go_install_dir }}/go"
+        state: absent
+
+    - name: Extract Go tarball to {{ go_install_dir }}
+      ansible.builtin.unarchive:
+        src: "{{ go_tarball_dest }}"
+        dest: "{{ go_install_dir }}"
+        remote_src: true
+
+    - name: Set GOROOT, GOPATH and update PATH in .bashrc
+      ansible.builtin.blockinfile:
+        path: "{{ bashrc_path }}"
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - Go environment"
+        block: |
+          export GOROOT={{ go_install_dir }}/go
+          export GOPATH=$HOME/go
+          export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+        create: true
+        mode: "0644"
+
+    # ── protobuf-compiler installation ───────────────────────────────────────
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install protobuf-compiler
+      ansible.builtin.apt:
+        name: protobuf-compiler
+        state: latest
+
+    # ── Verification ─────────────────────────────────────────────────────────
+
+    - name: Verify Go installation
+      ansible.builtin.command: "{{ go_install_dir }}/go/bin/go version"
+      register: go_verify
+      changed_when: false
+
+    - name: Print Go version
+      ansible.builtin.debug:
+        msg: "{{ go_verify.stdout }}"
+
+    - name: Verify protoc installation
+      ansible.builtin.command: protoc --version
+      register: protoc_verify
+      changed_when: false
+
+    - name: Print protoc version
+      ansible.builtin.debug:
+        msg: "{{ protoc_verify.stdout }}"
