@@ -72,7 +72,7 @@
     # ── Verification ─────────────────────────────────────────────────────────
 
     - name: Verify Go installation
-      ansible.builtin.command: go version
+      ansible.builtin.command: "{{ go_install_dir }}/go/bin/go version"
       register: go_verify
       changed_when: false
 
@@ -92,9 +92,15 @@
     # ── gRPC Go plugins ──────────────────────────────────────────────────────
 
     - name: Install protoc-gen-go
-      ansible.builtin.command: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+      ansible.builtin.command: "{{ go_install_dir }}/go/bin/go install google.golang.org/protobuf/cmd/protoc-gen-go@latest"
+      environment:
+        HOME: "{{ ansible_env.HOME }}"
+        GOPATH: "{{ ansible_env.HOME }}/go"
       changed_when: true
 
     - name: Install protoc-gen-go-grpc
-      ansible.builtin.command: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+      ansible.builtin.command: "{{ go_install_dir }}/go/bin/go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
+      environment:
+        HOME: "{{ ansible_env.HOME }}"
+        GOPATH: "{{ ansible_env.HOME }}/go"
       changed_when: true
