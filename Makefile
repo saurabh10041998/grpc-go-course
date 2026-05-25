@@ -37,8 +37,8 @@ else
 endif
 
 .DEFAULT_GOAL := help
-.PHONY: greet blog calculator help
-project := greet calculator blog
+.PHONY: greet blog calculator help primes 
+project := greet calculator blog primes
 
 all: $(project) ## Generate Pbs and build
 
