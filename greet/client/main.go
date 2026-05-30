@@ -2,6 +2,7 @@ package main;
 
 import (
 	"log"
+	"time"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	pb "github.com/saurabh10041998/grpc-go-course/greet/proto"
@@ -22,5 +23,7 @@ func main() {
 	//doGreet(c)
 	//doGreetManyTimes(c);
 	//doLongGreet(c)
-	doGreetEveryone(c)
+	//doGreetEveryone(c)
+	// doGreetWithDeadline(c, 5 * time.Second) // should complete
+	doGreetWithDeadline(c, 1 * time.Second) // should timeout
 }
