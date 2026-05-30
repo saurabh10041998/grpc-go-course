@@ -205,6 +205,94 @@ func (x *AverageResponse) GetAverage() float32 {
 	return 0
 }
 
+type MaxRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Number        int32                  `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MaxRequest) Reset() {
+	*x = MaxRequest{}
+	mi := &file_server_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MaxRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MaxRequest) ProtoMessage() {}
+
+func (x *MaxRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MaxRequest.ProtoReflect.Descriptor instead.
+func (*MaxRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MaxRequest) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type MaxResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Max           int32                  `protobuf:"varint,1,opt,name=max,proto3" json:"max,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MaxResponse) Reset() {
+	*x = MaxResponse{}
+	mi := &file_server_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MaxResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MaxResponse) ProtoMessage() {}
+
+func (x *MaxResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MaxResponse.ProtoReflect.Descriptor instead.
+func (*MaxResponse) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *MaxResponse) GetMax() int32 {
+	if x != nil {
+		return x.Max
+	}
+	return 0
+}
+
 var File_server_proto protoreflect.FileDescriptor
 
 const file_server_proto_rawDesc = "" +
@@ -219,10 +307,16 @@ const file_server_proto_rawDesc = "" +
 	"\x0eAverageRequest\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\x02R\x06number\"+\n" +
 	"\x0fAverageResponse\x12\x18\n" +
-	"\aaverage\x18\x01 \x01(\x02R\aaverage2\x9d\x01\n" +
+	"\aaverage\x18\x01 \x01(\x02R\aaverage\"$\n" +
+	"\n" +
+	"MaxRequest\x12\x16\n" +
+	"\x06number\x18\x01 \x01(\x05R\x06number\"\x1f\n" +
+	"\vMaxResponse\x12\x10\n" +
+	"\x03max\x18\x01 \x01(\x05R\x03max2\xd9\x01\n" +
 	"\x11CalculatorService\x12B\n" +
 	"\x03Add\x12\x1c.calculator.CalculateRequest\x1a\x1d.calculator.CalculateResponse\x12D\n" +
-	"\aAverage\x12\x1a.calculator.AverageRequest\x1a\x1b.calculator.AverageResponse(\x01B<Z:github.com/saurabh10041998/grpc-go-course/calculator/protob\x06proto3"
+	"\aAverage\x12\x1a.calculator.AverageRequest\x1a\x1b.calculator.AverageResponse(\x01\x12:\n" +
+	"\x03Max\x12\x16.calculator.MaxRequest\x1a\x17.calculator.MaxResponse(\x010\x01B<Z:github.com/saurabh10041998/grpc-go-course/calculator/protob\x06proto3"
 
 var (
 	file_server_proto_rawDescOnce sync.Once
@@ -236,20 +330,24 @@ func file_server_proto_rawDescGZIP() []byte {
 	return file_server_proto_rawDescData
 }
 
-var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_server_proto_goTypes = []any{
 	(*CalculateRequest)(nil),  // 0: calculator.CalculateRequest
 	(*CalculateResponse)(nil), // 1: calculator.CalculateResponse
 	(*AverageRequest)(nil),    // 2: calculator.AverageRequest
 	(*AverageResponse)(nil),   // 3: calculator.AverageResponse
+	(*MaxRequest)(nil),        // 4: calculator.MaxRequest
+	(*MaxResponse)(nil),       // 5: calculator.MaxResponse
 }
 var file_server_proto_depIdxs = []int32{
 	0, // 0: calculator.CalculatorService.Add:input_type -> calculator.CalculateRequest
 	2, // 1: calculator.CalculatorService.Average:input_type -> calculator.AverageRequest
-	1, // 2: calculator.CalculatorService.Add:output_type -> calculator.CalculateResponse
-	3, // 3: calculator.CalculatorService.Average:output_type -> calculator.AverageResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: calculator.CalculatorService.Max:input_type -> calculator.MaxRequest
+	1, // 3: calculator.CalculatorService.Add:output_type -> calculator.CalculateResponse
+	3, // 4: calculator.CalculatorService.Average:output_type -> calculator.AverageResponse
+	5, // 5: calculator.CalculatorService.Max:output_type -> calculator.MaxResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -266,7 +364,7 @@ func file_server_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_server_proto_rawDesc), len(file_server_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
