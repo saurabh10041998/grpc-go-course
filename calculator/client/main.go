@@ -21,5 +21,7 @@ func main() {
 
 	//doCalculate(c);
 	// doAverage(c);
-	doMax(c);
+	//doMax(c);
+	// doSqrt(c, 10) // Happy case
+	doSqrt(c, -2) // Unhappy case
 }
