@@ -117,9 +117,9 @@ const file_server_proto_rawDesc = "" +
 	"\fPrimeRequest\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\x05R\x06number\"'\n" +
 	"\rPrimeResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x05R\x06result2L\n" +
-	"\fPrimeService\x12<\n" +
-	"\tGetPrimes\x12\x14.primes.PrimeRequest\x1a\x15.primes.PrimeResponse\"\x000\x01B8Z6github.com/saurabh10041998/grpc-go-course/primes/protob\x06proto3"
+	"\x06result\x18\x01 \x01(\x05R\x06result2J\n" +
+	"\fPrimeService\x12:\n" +
+	"\tGetPrimes\x12\x14.primes.PrimeRequest\x1a\x15.primes.PrimeResponse0\x01B8Z6github.com/saurabh10041998/grpc-go-course/primes/protob\x06proto3"
 
 var (
 	file_server_proto_rawDescOnce sync.Once

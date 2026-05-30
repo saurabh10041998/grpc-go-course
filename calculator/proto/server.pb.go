@@ -117,6 +117,94 @@ func (x *CalculateResponse) GetResult() int32 {
 	return 0
 }
 
+type AverageRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Number        float32                `protobuf:"fixed32,1,opt,name=number,proto3" json:"number,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AverageRequest) Reset() {
+	*x = AverageRequest{}
+	mi := &file_server_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AverageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AverageRequest) ProtoMessage() {}
+
+func (x *AverageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AverageRequest.ProtoReflect.Descriptor instead.
+func (*AverageRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AverageRequest) GetNumber() float32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type AverageResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Average       float32                `protobuf:"fixed32,1,opt,name=average,proto3" json:"average,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AverageResponse) Reset() {
+	*x = AverageResponse{}
+	mi := &file_server_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AverageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AverageResponse) ProtoMessage() {}
+
+func (x *AverageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AverageResponse.ProtoReflect.Descriptor instead.
+func (*AverageResponse) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AverageResponse) GetAverage() float32 {
+	if x != nil {
+		return x.Average
+	}
+	return 0
+}
+
 var File_server_proto protoreflect.FileDescriptor
 
 const file_server_proto_rawDesc = "" +
@@ -127,9 +215,14 @@ const file_server_proto_rawDesc = "" +
 	"\x01a\x18\x01 \x01(\x05R\x01a\x12\f\n" +
 	"\x01b\x18\x02 \x01(\x05R\x01b\"+\n" +
 	"\x11CalculateResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x05R\x06result2W\n" +
+	"\x06result\x18\x01 \x01(\x05R\x06result\"(\n" +
+	"\x0eAverageRequest\x12\x16\n" +
+	"\x06number\x18\x01 \x01(\x02R\x06number\"+\n" +
+	"\x0fAverageResponse\x12\x18\n" +
+	"\aaverage\x18\x01 \x01(\x02R\aaverage2\x9d\x01\n" +
 	"\x11CalculatorService\x12B\n" +
-	"\x03Add\x12\x1c.calculator.CalculateRequest\x1a\x1d.calculator.CalculateResponseB<Z:github.com/saurabh10041998/grpc-go-course/calculator/protob\x06proto3"
+	"\x03Add\x12\x1c.calculator.CalculateRequest\x1a\x1d.calculator.CalculateResponse\x12D\n" +
+	"\aAverage\x12\x1a.calculator.AverageRequest\x1a\x1b.calculator.AverageResponse(\x01B<Z:github.com/saurabh10041998/grpc-go-course/calculator/protob\x06proto3"
 
 var (
 	file_server_proto_rawDescOnce sync.Once
@@ -143,16 +236,20 @@ func file_server_proto_rawDescGZIP() []byte {
 	return file_server_proto_rawDescData
 }
 
-var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_server_proto_goTypes = []any{
 	(*CalculateRequest)(nil),  // 0: calculator.CalculateRequest
 	(*CalculateResponse)(nil), // 1: calculator.CalculateResponse
+	(*AverageRequest)(nil),    // 2: calculator.AverageRequest
+	(*AverageResponse)(nil),   // 3: calculator.AverageResponse
 }
 var file_server_proto_depIdxs = []int32{
 	0, // 0: calculator.CalculatorService.Add:input_type -> calculator.CalculateRequest
-	1, // 1: calculator.CalculatorService.Add:output_type -> calculator.CalculateResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: calculator.CalculatorService.Average:input_type -> calculator.AverageRequest
+	1, // 2: calculator.CalculatorService.Add:output_type -> calculator.CalculateResponse
+	3, // 3: calculator.CalculatorService.Average:output_type -> calculator.AverageResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -169,7 +266,7 @@ func file_server_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_server_proto_rawDesc), len(file_server_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
